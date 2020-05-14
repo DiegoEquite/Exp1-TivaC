@@ -29,29 +29,28 @@ int main(void)
     uint32_t tiempo=0;
 
     while(1){
-	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x02);
-	    for(tiempo=0;tiempo<16000000;tiempo++){tiempo=tiempo;}
+        if((GPIOPinRead (GPIO_PORTF_BASE,GPIO_PIN_4 ) & 0x16)==0){
+        while((GPIOPinRead (GPIO_PORTF_BASE,GPIO_PIN_4 ) & 0x16)==0){}//antirebote
+	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);//verde
+	    SysCtlDelay (100000000) ;
 	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
-	    for(tiempo=0;tiempo<160000;tiempo++){tiempo=tiempo;}
-	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0xA);
-	    for(tiempo=0;tiempo<16000000;tiempo++){tiempo=tiempo;}
+	    SysCtlDelay (10000000) ;
+	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);//verde parapadeante
+	    SysCtlDelay (10000000) ;
 	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
-	    for(tiempo=0;tiempo<160000;tiempo++){tiempo=tiempo;}
+	    SysCtlDelay (10000000) ;
+	  	GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
+	  	SysCtlDelay (10000000) ;
+	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
+	    SysCtlDelay (10000000) ;
 	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
-	    for(tiempo=0;tiempo<16000000;tiempo++){tiempo=tiempo;}
+	    SysCtlDelay (10000000) ;
 	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
-	    for(tiempo=0;tiempo<1600000;tiempo++){tiempo=tiempo;}
-	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
-	    for(tiempo=0;tiempo<1600000;tiempo++){tiempo=tiempo;}
+	    SysCtlDelay (10000000) ;
+	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x0A);//amarillo
+	    SysCtlDelay (10000000) ;
 	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
-	    for(tiempo=0;tiempo<1600000;tiempo++){tiempo=tiempo;}
-	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
-	    for(tiempo=0;tiempo<1600000;tiempo++){tiempo=tiempo;}
-	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
-	    for(tiempo=0;tiempo<1600000;tiempo++){tiempo=tiempo;}
-	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x08);
-	    for(tiempo=0;tiempo<1600000;tiempo++){tiempo=tiempo;}
-	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x00);
-	    for(tiempo=0;tiempo<1600000;tiempo++){tiempo=tiempo;}
-	}
+	    SysCtlDelay (1000000) ;
+	    GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3,0x02);//rojo
+	}}
 }
